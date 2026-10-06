@@ -6,4 +6,10 @@ public class MorseNode {
     public MorseNode(char valor) {
         this.valor = valor;
     }
+    public char getValor() {
+        return valor;
+    }
+    public void setValor(char valor) {
+        System.out.println(valor);
+    }
 }
