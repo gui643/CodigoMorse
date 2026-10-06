@@ -32,4 +32,34 @@ public class Morse{
     atual.setValor(valor);
     }
 
+
+    public void arvoreMorse() {
+        inserir(".-", 'A');
+        inserir("-...", 'B');
+        inserir("-.-.", 'C');
+        inserir("-..", 'D');
+        inserir(".", 'E');
+        inserir("..-.",'F');
+        inserir("--.",'G');
+        inserir("....",'H');
+        inserir("..", 'I');
+        inserir(".---", 'J');
+        inserir("-.-",'K');
+        inserir(".-..", 'L');
+        inserir("--", 'M');
+        inserir("-.", 'N');
+        inserir("---", 'O');
+        inserir(".--.", 'P');
+        inserir("--.-", 'Q');
+        inserir(".-.",'R');
+        inserir("...", 'S');
+        inserir("-", 'T');
+        inserir("..-",'U');
+        inserir("...-", 'V');
+        inserir(".--", 'W');
+        inserir("-..-", 'X');
+        inserir("-.--", 'Y');
+        inserir("--..", 'Z');
+
+    }
 }
