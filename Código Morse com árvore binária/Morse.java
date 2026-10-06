@@ -61,5 +61,16 @@ public class Morse{
         inserir("-.--", 'Y');
         inserir("--..", 'Z');
 
+        inserir(".----", '1');
+        inserir("..---", '2');
+        inserir("...--", '3');
+        inserir("....-", '4');
+        inserir(".....", '5');
+        inserir("-....", '6');
+        inserir("--...", '7');
+        inserir("---..", '8');
+        inserir("----.", '9');
+        inserir("-----", '0');
     }
+
 }
