@@ -73,6 +73,119 @@ public class Morse{
         inserir("-----", '0');
     }
 
+     
+    public void codificar(String texto) {
+        texto = texto.trim().toUpperCase();
+ 
+        if (texto.isEmpty()) {
+            System.out.println("Texto vazio. Digite algo para codificar.");
+            return;
+        }
+ 
+        StringBuilder resultado = new StringBuilder();
+        boolean espacoAnterior = false;
+ 
+        for (int i = 0; i < texto.length(); i++) {
+            char c = texto.charAt(i);
+ 
+            if (c == ' ') {
+                if (!espacoAnterior) {
+                    resultado.append("/ "); 
+                }
+                espacoAnterior = true;
+            } else {
+                String codigo = buscarCodigo(raiz, c, "");
+                if (codigo == null) {
+                    System.out.println("Símbolo inválido: '" + c + "'. Use apenas letras de A a Z (sem acento), números de 0 a 9 e espaços.");
+                    return;
+                }
+                resultado.append(codigo).append(" ");
+                espacoAnterior = false;
+            }
+        }
+        System.out.println(resultado.toString().trim());
+    }
+ 
+    public void decodificar(String entrada) {
+        if (entrada.trim().isEmpty()) {
+            System.out.println("Entrada vazia. Digite o código Morse.");
+            return;
+        }
+ 
+        for (int i = 0; i < entrada.length(); i++) {
+            char c = entrada.charAt(i);
+            if (c != '.' && c != '-' && c != '/' && c != ' ') {
+                System.out.println("Entrada inválida: o caractere '" + c + "' não é permitido. Use apenas ponto (.), traço (-), barra (/) e espaço.");
+                return;
+            }
+        }
+ 
+        String[] partes = entrada.trim().split(" ");
+        StringBuilder resultado = new StringBuilder();
+ 
+        for (int i = 0; i < partes.length; i++) {
+            String parte = partes[i];
+ 
+            if (parte.isEmpty()) {
+                continue; 
+            }
+ 
+            if (parte.equals("/")) {
+                resultado.append(' '); 
+            } else {
+                char letra = buscarLetra(parte);
+                if (letra == ' ') {
+                    System.out.println("Código Morse inválido: " + parte);
+                    return;
+                }
+                resultado.append(letra);
+            }
+        }
+        System.out.println(resultado);
+    }
+ 
+    private char buscarLetra(String codigo) {
+        MorseNode atual = raiz;
+ 
+        for (int i = 0; i < codigo.length(); i++) {
+            char simbolo = codigo.charAt(i);
+ 
+            if (simbolo == '.') {
+                atual = atual.getEsquerda();
+            } else if (simbolo == '-') {
+                atual = atual.getDireita();
+            } else {
+                atual = null;
+            }
+ 
+            if (atual == null) {
+                return ' ';
+            }
+        }
+        return atual.getValor();
+    }
+ 
+    private String buscarCodigo(MorseNode no, char letra, String caminho) {
+        if (no.getValor() == letra) {
+            return caminho;
+        }
+ 
+        if (no.getEsquerda() != null) {
+            String codigo = buscarCodigo(no.getEsquerda(), letra, caminho + ".");
+            if (codigo != null) {
+                return codigo;
+            }
+        }
+ 
+        if (no.getDireita() != null) {
+            String codigo = buscarCodigo(no.getDireita(), letra, caminho + "-");
+            if (codigo != null) {
+                return codigo;
+            }
+        }
+        return null;
+    }
+ 
     public void mostrarArvore() {
         System.out.println("Legenda: (.) ponto = filho da esquerda | (-) traço = filho da direita");
         System.out.println("RAIZ");
@@ -99,6 +212,7 @@ public class Morse{
             mostrarNo(direita, prefixo + "    ");
         }
     }
+ 
     private String rotulo(char simbolo, MorseNode no) {
         String texto = "(" + simbolo + ")";
         if (no.getValor() != ' ') {
@@ -106,5 +220,6 @@ public class Morse{
         }
         return texto;
     }
-
 }
+
+
