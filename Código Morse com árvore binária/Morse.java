@@ -73,4 +73,38 @@ public class Morse{
         inserir("-----", '0');
     }
 
+    public void mostrarArvore() {
+        System.out.println("Legenda: (.) ponto = filho da esquerda | (-) traço = filho da direita");
+        System.out.println("RAIZ");
+        mostrarNo(raiz, "");
+    }
+ 
+    private void mostrarNo(MorseNode no, String prefixo) {
+        MorseNode esquerda = no.getEsquerda();
+        MorseNode direita = no.getDireita();
+ 
+        if (esquerda != null) {
+            String conector = "`-- ";
+            String continuacao = "    ";
+            if (direita != null) {
+                conector = "|-- ";
+                continuacao = "|   ";
+            }
+            System.out.println(prefixo + conector + rotulo('.', esquerda));
+            mostrarNo(esquerda, prefixo + continuacao);
+        }
+ 
+        if (direita != null) {
+            System.out.println(prefixo + "`-- " + rotulo('-', direita));
+            mostrarNo(direita, prefixo + "    ");
+        }
+    }
+    private String rotulo(char simbolo, MorseNode no) {
+        String texto = "(" + simbolo + ")";
+        if (no.getValor() != ' ') {
+            texto += " " + no.getValor();
+        }
+        return texto;
+    }
+
 }
