@@ -7,15 +7,15 @@ Na árvore, o filho a esquerda será utilizado para representar o ".", enquanto 
 será representado usando "-". O projeto usa console gráfico para exibir opções de decodificação e 
 codificação, além disso a codificação e decodificação de arquivos txt.
 
-# Funcionamento
+# Funcionamento 
 
 Código morse
-1 - Codificar texto digitado
-2 - Decodificar Morse digitado
-3 - Codificar arquivo de texto
-4 - Decodificar arquivo Morse
-5 - Mostrar árvore
-0 - Encerrar
+1. Codificar texto digitado
+2. Decodificar Morse digitado
+3. Codificar arquivo de texto
+4. Decodificar arquivo Morse
+5. Mostrar árvore
+6. Encerrar
 
 # 1. Codificar texto digitado
 Selecione a opção 1 e digite o texto desejado (de A-Z sem acento, 0-9 e espaços).
