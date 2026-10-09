@@ -22,6 +22,12 @@ public class Main {
                     System.out.print("Digite o Morse: ");
                     morse.decodificar(teclado.nextLine());
                     break;
+                case 3:
+                    codificarArquivo();
+                    break;
+                case 4:
+                    decodificarArquivo();
+                    break;
                 case 5:
                     morse.mostrarArvore();
                     break;
@@ -52,6 +58,31 @@ public class Main {
             return Integer.parseInt(linha);
         } catch (NumberFormatException e) {
             return -1;
+        }
+    }
+
+    private static String lerCaminho() {
+        System.out.print("Caminho do arquivo: ");
+        return teclado.nextLine().trim().replace("\"", "");
+    }
+
+    private static void codificarArquivo() {
+        String caminho = lerCaminho();
+        try {
+            String texto = arquivos.lerTexto(caminho);
+            morse.codificar(texto);
+        } catch (IOException e) {
+            System.out.println("Erro: " + e.getMessage());
+        }
+    }
+
+    private static void decodificarArquivo() {
+        String caminho = lerCaminho();
+        try {
+            String linha = arquivos.lerLinhaMorse(caminho);
+            morse.decodificar(linha);
+        } catch (IOException e) {
+            System.out.println("Erro: " + e.getMessage());
         }
     }
 }
